@@ -3,6 +3,14 @@ import { products } from '../../starting-code/data/products'
 import './HomePage.css';
 
 export function HomePage() {
+	//This is a standard JavaScript Fetch API request. It performs a GET request to your local server to retrieve a list of products and logs them to the console.
+	fetch('http://localhost:3000/api/products')
+		.then((response) => {
+			return response.json();
+		}).then((data) => {
+			console.log(data);
+		});
+
 	return (
 		<>
 			<title>Shop Project</title>
