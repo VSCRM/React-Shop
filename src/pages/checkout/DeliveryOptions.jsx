@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { formatMoney } from "../../utils/money";
 
-export function DeliveryOptions({ deliveryOptions, cartItem }) {
+export function DeliveryOptions({ deliveryOptions, cartItem, updateDeliveryOption }) {
 	return (
 		<div className="delivery-options">
 			<div className="delivery-options-title">
@@ -16,11 +16,12 @@ export function DeliveryOptions({ deliveryOptions, cartItem }) {
 
 				return (
 					<div key={option.id} className="delivery-option">
-						<input type="radio"
+						<input
+							type="radio"
 							checked={option.id === cartItem.deliveryOptionId}
 							className="delivery-option-input"
 							name={`delivery-option-${cartItem.productId}`}
-							onChange={() => { }}
+							onChange={() => updateDeliveryOption(cartItem.productId, option.id)}
 						/>
 						<div>
 							<div className="delivery-option-date">

@@ -1,7 +1,7 @@
 import { formatMoney } from "../../utils/money";
 import { DeliveryOptions } from "./DeliveryOptions";
 
-export function CartItemDetails({ cartItem, deliveryOptions }) {
+export function CartItemDetails({ cartItem, deliveryOptions, updateDeliveryOption }) {
 	return (
 		<div className="cart-item-details-grid">
 			<img className="product-image"
@@ -29,7 +29,11 @@ export function CartItemDetails({ cartItem, deliveryOptions }) {
 				</div>
 			</div>
 
-			<DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} />
+			<DeliveryOptions
+				deliveryOptions={deliveryOptions}
+				cartItem={cartItem}
+				updateDeliveryOption={updateDeliveryOption}
+			/>
 
 		</div>
 	);
