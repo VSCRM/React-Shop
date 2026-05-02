@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router';
-import { useCart } from './hooks/useCart';
+import { useCartContext } from './hooks/useCartContext';
 import { HomePage } from './pages/home/HomePage';
 import { CheckoutPage } from './pages/checkout/CheckoutPage';
 import { OrdersPage } from './pages/order/OrdersPage';
 import './App.css'
 
 function App() {
-	const { cart, updateDeliveryOption } = useCart();
+	const { cart, updateDeliveryOption } = useCartContext();
 
 	return (
 		<Routes>

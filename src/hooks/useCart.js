@@ -1,16 +1,26 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import { loadToCart } from "../services/loadToCart";
+import { addToCart } from "../services/addToCart";
 
 export function useCart() {
 	const [cart, setCart] = useState([]);
 
+	const loadCart = async () => {
+		const data = await loadToCart();
+		setCart(data);
+	};
+
 	useEffect(() => {
-		const getCart = async () => {
-			const response = await axios.get('/api/cart-items?expand=product');
-			setCart(response.data);
+		const init = async () => {
+			await loadCart();
 		};
-		getCart();
+		init();
 	}, []);
+
+	const addCart = async (productId, quantity) => {
+		await addToCart(productId, quantity);
+		await loadCart();
+	};
 
 	const updateDeliveryOption = (productId, deliveryOptionId) => {
 		setCart((prevCart) => {
@@ -24,6 +34,6 @@ export function useCart() {
 	};
 
 	return {
-		cart, updateDeliveryOption
+		cart, loadCart, updateDeliveryOption, addCart
 	};
 }
