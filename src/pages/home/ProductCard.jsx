@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { formatMoney } from "../../utils/money";
+import { useAddToCartAnimation } from "../../hooks/useAddToCartAnimation";
+import { ProductRating } from "./ProductRating";
+import { ProductQuantity } from "./ProductQuantity";
+import { AddedMessage } from "./AddedMessage";
 
 export function ProductCard({ product, addCart }) {
 	const [selectedQuantity, setSelectedQuantity] = useState(1);
+	const { isAdded, triggerAnimation } = useAddToCartAnimation();
+
+	const handleAddToCart = () => {
+		addCart(product.id, selectedQuantity);
+		triggerAnimation();
+	};
 
 	return (
 		<div className="product-container">
@@ -14,47 +24,24 @@ export function ProductCard({ product, addCart }) {
 				{product.name}
 			</div>
 
-			<div className="product-rating-container">
-				<img className="product-rating-stars"
-					src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
-				<div className="product-rating-count link-primary">
-					{product.rating.count}
-				</div>
-			</div>
+			<ProductRating rating={product.rating} />
 
 			<div className="product-price">
 				{formatMoney(product.priceCents)}
 			</div>
 
-			<div className="product-quantity-container">
-				<select
-					value={selectedQuantity}
-					onChange={(event) => {
-						setSelectedQuantity(Number(event.target.value))
-					}}>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-				</select>
-			</div>
+			<ProductQuantity
+				selectedQuantity={selectedQuantity}
+				setSelectedQuantity={setSelectedQuantity}
+			/>
+
+			<AddedMessage isAdded={isAdded} quantity={selectedQuantity} />
 
 			<div className="product-spacer"></div>
 
-			<div className="added-to-cart">
-				<img src="images/icons/checkmark.png" />
-				Added
-			</div>
-
 			<button className="add-to-cart-button button-primary"
 				onClick={() => {
-					addCart(product.id, selectedQuantity)
+					handleAddToCart()
 				}}>
 				Add to Cart
 			</button>
