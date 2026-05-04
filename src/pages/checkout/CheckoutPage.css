@@ -161,6 +161,45 @@
 	margin-bottom: 19px;
 }
 
+/* QuantityEditor */
+.checkout-page .quantity-editor {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+.checkout-page .quantity-editor-select {
+	padding: 2px 6px;
+	border-radius: 4px;
+	border: 1px solid rgb(222, 222, 222);
+	cursor: pointer;
+}
+
+/* DeleteConfirm */
+.checkout-page .delete-confirm {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+.checkout-page .delete-confirm-label {
+	font-weight: 500;
+}
+
+.checkout-page .delete-confirm-separator {
+	color: rgb(222, 222, 222);
+}
+
+.checkout-page .delete-confirm-all {
+	color: rgb(192, 57, 43);
+}
+
+.checkout-page .delete-confirm-cancel {
+	color: rgb(120, 120, 120);
+}
+
 @media (max-width: 1000px) {
 	.checkout-page .main {
 		max-width: 500px;
