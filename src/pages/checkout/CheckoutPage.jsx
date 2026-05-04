@@ -14,7 +14,7 @@ export function CheckoutPage({ cart, updateDeliveryOption, removeItem, updateQua
 		<>
 			<title>Checkout</title>
 
-			<CheckoutHeader />
+			<CheckoutHeader cart={cart} />
 
 			<div className="checkout-page">
 				<div className="page-title">Review your order</div>
