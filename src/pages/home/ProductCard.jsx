@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { formatMoney } from "../../utils/money";
-import { useAddToCartAnimation } from "../../hooks/useAddToCartAnimation";
 import { ProductRating } from "./ProductRating";
 import { ProductQuantity } from "./ProductQuantity";
 import { AddedMessage } from "./AddedMessage";
+import { useAddToCartAnimation } from "../../hooks/useAddToCartAnimation";
 
 export function ProductCard({ product, addCart }) {
 	const [selectedQuantity, setSelectedQuantity] = useState(1);

@@ -1,5 +1,5 @@
-import { useCartContext } from "../../hooks/useCartContext";
 import { ProductCard } from "./ProductCard";
+import { useCartContext } from "../../hooks/useCartContext";
 
 export function ProductsGrid({ products }) {
 	const { addCart } = useCartContext();

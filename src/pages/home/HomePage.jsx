@@ -1,19 +1,10 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import { Header } from '../../components/Header';
 import { ProductsGrid } from './ProductsGrid'
+import { useProducts } from '../../hooks/useProducts';
 import './HomePage.css';
 
 export function HomePage({ cart }) {
-	const [products, setProducts] = useState([]);
-
-	useEffect(() => {
-		const getHomePage = async () => {
-			const response = await axios.get('/api/products');
-			setProducts(response.data);
-		};
-		getHomePage();
-	}, []);
+	const products = useProducts();
 
 	return (
 		<>
