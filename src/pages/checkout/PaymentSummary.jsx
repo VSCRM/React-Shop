@@ -1,6 +1,6 @@
 import { formatMoney } from "../../utils/money";
 
-export function PaymentSummary({ paymentSummary }) {
+export function PaymentSummary({ paymentSummary, placeOrder, cart }) {
 	return (
 		<div className="payment-summary">
 			<div className="payment-summary-title">
@@ -44,7 +44,11 @@ export function PaymentSummary({ paymentSummary }) {
 						</div>
 					</div>
 
-					<button className="place-order-button button-primary">
+					<button
+						className="place-order-button button-primary"
+						onClick={() => placeOrder(cart)}
+						disabled={!cart || cart?.length === 0}
+					>
 						Place your order
 					</button>
 				</>

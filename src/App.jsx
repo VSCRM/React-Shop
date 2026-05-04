@@ -6,7 +6,7 @@ import { OrdersPage } from './pages/order/OrdersPage';
 import './App.css'
 
 function App() {
-	const { cart, updateDeliveryOption, removeItem, updateQuantity } = useCartContext();
+	const { cart, updateDeliveryOption, removeItem, updateQuantity, placeOrder, addCart } = useCartContext();
 
 	return (
 		<Routes>
@@ -18,9 +18,10 @@ function App() {
 					updateDeliveryOption={updateDeliveryOption}
 					removeItem={removeItem}
 					updateQuantity={updateQuantity}
+					placeOrder={placeOrder}
 				/>}
 			/>
-			<Route path="orders" element={<OrdersPage cart={cart} />} />
+			<Route path="orders" element={<OrdersPage cart={cart} addCart={addCart} />} />
 		</Routes>
 	)
 }

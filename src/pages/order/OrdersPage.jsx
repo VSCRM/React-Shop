@@ -3,7 +3,7 @@ import { OrderContainer } from './OrderContainer';
 import { useOrders } from '../../hooks/useOrders';
 import './OrdersPage.css';
 
-export function OrdersPage({ cart }) {
+export function OrdersPage({ cart, addCart }) {
 	const orders = useOrders();
 
 	return (
@@ -20,6 +20,7 @@ export function OrdersPage({ cart }) {
 						<OrderContainer
 							key={singleOrder.id}
 							singleOrder={singleOrder}
+							addCart={addCart}
 						/>
 					))}
 				</div>

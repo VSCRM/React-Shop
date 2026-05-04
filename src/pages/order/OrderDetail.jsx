@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { ProductDetails } from "./ProductDetails";
 import { ProductActions } from "./ProductActions";
 
-export function OrderDetail({ singleOrder }) {
+export function OrderDetail({ singleOrder, addCart }) {
 	return (
 		<div className="order-details-grid">
 			{singleOrder.products.map((orderProduct) => {
@@ -12,7 +12,7 @@ export function OrderDetail({ singleOrder }) {
 							<img src={orderProduct.product.image} />
 						</div>
 
-						<ProductDetails orderProduct={orderProduct} />
+						<ProductDetails orderProduct={orderProduct} addCart={addCart} />
 
 						<ProductActions />
 					</Fragment>

@@ -114,6 +114,49 @@
 	font-size: 14px;
 	padding: 8px;
 }
+.buy-again-picker {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 10px;
+}
+
+.buy-again-select {
+	padding: 5px 8px;
+	border-radius: 4px;
+	border: 1px solid rgb(213, 217, 217);
+	background-color: rgb(240, 242, 242);
+	cursor: pointer;
+}
+
+.buy-again-select:focus {
+	outline: none;
+	border-color: #e77600;
+	box-shadow: 0 0 3px rgba(228, 121, 17, 0.5);
+}
+
+.buy-again-cancel {
+	padding: 6px 12px;
+	font-size: 13px;
+	cursor: pointer;
+	border: 1px solid rgb(213, 217, 217);
+	background: white;
+	border-radius: 8px;
+}
+
+.buy-again-cancel:hover {
+	background-color: rgb(247, 250, 250);
+}
+
+.buy-again-message {
+	transition: opacity 0.3s ease;
+}
+
+.buy-again-icon {
+	width: 20px;
+	margin-right: 5px;
+	vertical-align: middle;
+}
 
 @media (max-width: 800px) {
 	.orders-page .order-details-grid {
@@ -203,9 +246,6 @@
 	}
 
 	.orders-page .product-actions {
-		/* grid-column: auto; undos grid-column: 2; from above.
-      This element will now be placed in its normal column
-      in the grid. */
 		grid-column: auto;
 		margin-bottom: 70px;
 	}

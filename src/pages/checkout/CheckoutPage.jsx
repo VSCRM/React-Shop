@@ -6,7 +6,7 @@ import { usePaymentSummary } from '../../hooks/usePaymentSummary';
 import './checkout-header.css'
 import './CheckoutPage.css'
 
-export function CheckoutPage({ cart, updateDeliveryOption, removeItem, updateQuantity }) {
+export function CheckoutPage({ cart, updateDeliveryOption, removeItem, updateQuantity, placeOrder }) {
 	const deliveryOptions = useDeliveryOptions();
 	const paymentSummary = usePaymentSummary({ cart });
 
@@ -27,7 +27,11 @@ export function CheckoutPage({ cart, updateDeliveryOption, removeItem, updateQua
 						removeItem={removeItem}
 						updateQuantity={updateQuantity}
 					/>
-					<PaymentSummary paymentSummary={paymentSummary} />
+					<PaymentSummary
+						paymentSummary={paymentSummary}
+						placeOrder={placeOrder}
+						cart={cart}
+					/>
 				</div>
 			</div>
 		</>

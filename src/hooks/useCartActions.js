@@ -1,7 +1,9 @@
 import axios from "axios";
+import { useNavigate } from "react-router";
 import { addToCart } from "../services/addToCart";
 import { updateCartQuantity } from "../services/updateCartQuantity";
 import { deleteCartItem } from "../services/deleteCartItem";
+import { createOrder } from "../services/createOrder";
 
 export function useCartActions(setCart, loadCart) {
 	const addCart = async (productId, quantity) => {
@@ -27,7 +29,14 @@ export function useCartActions(setCart, loadCart) {
 		await loadCart();
 	};
 
+	const navigate = useNavigate();
+
+	const placeOrder = async () => {
+			await createOrder();
+			navigate('/orders');
+	};
+
 	return {
-		addCart, updateDeliveryOption, updateQuantity, removeItem
+		addCart, updateDeliveryOption, updateQuantity, removeItem, placeOrder
 	};
 }
