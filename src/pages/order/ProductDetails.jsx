@@ -1,32 +1,19 @@
-import { useState } from "react";
 import { ProductInfo } from "./ProductInfo";
 import { BuyAgainPicker } from "./BuyAgainPicker";
+import { useFlashMessage } from "../../hooks/useFlashMessage";
+import { useBuyAgain } from "../../hooks/useBuyAgain";
 
 export function ProductDetails({ orderProduct, addCart }) {
-	const [showPicker, setShowPicker] = useState(false);
-	const [selectedQuantity, setSelectedQuantity] = useState(1);
-	const [added, setAdded] = useState(false);
+	const [added, flashAdded] = useFlashMessage(2000);
 
-	const flashAdded = () => {
-		setAdded(true);
-		setTimeout(() => setAdded(false), 2000);
-	};
-
-	const handleAddToCart = () => {
-		if (orderProduct.quantity === 1) {
-			addCart(orderProduct.productId, 1);
-			flashAdded();
-		} else {
-			setShowPicker(true);
-		}
-	};
-
-	const handleConfirm = () => {
-		addCart(orderProduct.productId, selectedQuantity);
-		setShowPicker(false);
-		setSelectedQuantity(1);
-		flashAdded();
-	};
+	const {
+		showPicker,
+		selectedQuantity,
+		setSelectedQuantity,
+		handleAddToCart,
+		handleConfirm,
+		handleCancel
+	} = useBuyAgain(orderProduct, addCart, flashAdded);
 
 	return (
 		<div className="product-details">
@@ -49,7 +36,7 @@ export function ProductDetails({ orderProduct, addCart }) {
 					selectedQuantity={selectedQuantity}
 					onSelect={setSelectedQuantity}
 					onConfirm={handleConfirm}
-					onCancel={() => setShowPicker(false)}
+					onCancel={handleCancel}
 				/>
 			)}
 		</div>

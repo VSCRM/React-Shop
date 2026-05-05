@@ -14,7 +14,10 @@ export function OrderDetail({ singleOrder, addCart }) {
 
 						<ProductDetails orderProduct={orderProduct} addCart={addCart} />
 
-						<ProductActions />
+						<ProductActions
+							orderId={singleOrder.id}
+							productId={orderProduct.productId}
+						/>
 					</Fragment>
 				);
 			})}

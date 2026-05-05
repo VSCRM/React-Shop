@@ -1,28 +1,13 @@
-import { useState } from "react";
 import { QuantityDisplay } from "./QuantityDisplay";
 import { QuantityEditingView } from "./QuantityEditingView";
 import { QuantityConfirmDeleteView } from "./QuantityConfirmDeleteView";
+import { useQuantityMode } from "../../hooks/useQuantityMode";
 
 export function ProductQuantity({ cartItem, removeItem, updateQuantity }) {
-	const [mode, setMode] = useState("view");
-
-	const handleSave = async (newQuantity) => {
-		await updateQuantity(cartItem.productId, newQuantity);
-		setMode("view");
-	};
-
-	const handleDeleteOne = async () => {
-		if (cartItem.quantity === 1) {
-			await removeItem(cartItem.productId);
-		} else {
-			await updateQuantity(cartItem.productId, cartItem.quantity - 1);
-			setMode("view");
-		}
-	};
-
-	const handleDeleteAll = async () => {
-		await removeItem(cartItem.productId);
-	};
+	const {
+		mode, setMode,
+		handleSave, handleDeleteOne, handleDeleteAll
+	} = useQuantityMode(cartItem, removeItem, updateQuantity);
 
 	return (
 		<>

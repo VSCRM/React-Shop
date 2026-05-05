@@ -3,6 +3,7 @@ import { useCartContext } from './hooks/useCartContext';
 import { HomePage } from './pages/home/HomePage';
 import { CheckoutPage } from './pages/checkout/CheckoutPage';
 import { OrdersPage } from './pages/order/OrdersPage';
+import { TrackingPage } from './pages/tracking/TrackingPage';
 import './App.css'
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
 				/>}
 			/>
 			<Route path="orders" element={<OrdersPage cart={cart} addCart={addCart} />} />
+			<Route path="tracking/:orderId/:productId" element={<TrackingPage cart={cart} />} />
+			<Route path="tracking/:orderId" element={<TrackingPage cart={cart} />} />
 		</Routes>
 	)
 }
