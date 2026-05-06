@@ -8,7 +8,7 @@ export function SearchButton({ hasText, onClear }) {
 		>
 			<img
 				className="search-icon"
-				src={hasText ? 'images/icons/checkmark.png' : 'images/icons/search-icon.png'}
+				src={hasText ? 'images/icons/search-icon.png' : 'images/icons/search-icon.png'}
 			/>
 		</button>
 	);

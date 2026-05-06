@@ -1,23 +1,23 @@
-import { useState } from "react";
-import { formatMoney } from "../../utils/money";
-import { ProductRating } from "./ProductRating";
-import { ProductQuantity } from "./ProductQuantity";
-import { AddedMessage } from "./AddedMessage";
-import { useAddToCartAnimation } from "../../hooks/useAddToCartAnimation";
+import { useState } from 'react';
+import { formatMoney } from '../../utils/money';
+import { ProductRating } from './ProductRating';
+import { ProductQuantity } from './ProductQuantity';
+import { AddedMessage } from './AddedMessage';
+import { useFlashMessage } from '../../hooks/useFlashMessage';
 
 export function ProductCard({ product, addCart }) {
 	const [selectedQuantity, setSelectedQuantity] = useState(1);
-	const { isAdded, triggerAnimation } = useAddToCartAnimation();
+	const [isAdded, triggerAdded] = useFlashMessage(2000);
 
 	const handleAddToCart = () => {
 		addCart(product.id, selectedQuantity);
-		triggerAnimation();
+		triggerAdded();
 	};
 
 	return (
 		<div className="product-container">
 			<div className="product-image-container">
-				<img className="product-image" src={product.image} />
+				<img className="product-image" src={product.image} alt={product.name} />
 			</div>
 
 			<div className="product-name limit-text-to-2-lines">
@@ -39,10 +39,10 @@ export function ProductCard({ product, addCart }) {
 
 			<div className="product-spacer"></div>
 
-			<button className="add-to-cart-button button-primary"
-				onClick={() => {
-					handleAddToCart()
-				}}>
+			<button
+				className="add-to-cart-button button-primary"
+				onClick={handleAddToCart}
+			>
 				Add to Cart
 			</button>
 		</div>

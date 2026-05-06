@@ -1,16 +1,18 @@
-import { Header } from '../../components/Header';
+import { Header } from '../../layout/Header';
 import { OrderContainer } from './OrderContainer';
 import { useOrders } from '../../hooks/useOrders';
+import { useCartContext } from '../../hooks/useCartContext';
 import './OrdersPage.css';
 
-export function OrdersPage({ cart, addCart }) {
+export function OrdersPage() {
+	const { addCart } = useCartContext();
 	const orders = useOrders();
 
 	return (
 		<>
 			<title>Orders</title>
 
-			<Header cart={cart} />
+			<Header />
 
 			<div className="orders-page">
 				<div className="page-title">Your Orders</div>

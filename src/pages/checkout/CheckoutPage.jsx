@@ -3,10 +3,12 @@ import { OrderSummary } from './OrderSummary';
 import { PaymentSummary } from './PaymentSummary';
 import { useDeliveryOptions } from '../../hooks/useDeliveryOptions';
 import { usePaymentSummary } from '../../hooks/usePaymentSummary';
-import './checkout-header.css'
-import './CheckoutPage.css'
+import { useCartContext } from '../../hooks/useCartContext';
+import './CheckoutHeader.css';
+import './CheckoutPage.css';
 
-export function CheckoutPage({ cart, updateDeliveryOption, removeItem, updateQuantity, placeOrder }) {
+export function CheckoutPage() {
+	const { cart, updateDeliveryOption, removeItem, updateQuantity, placeOrder } = useCartContext();
 	const deliveryOptions = useDeliveryOptions();
 	const paymentSummary = usePaymentSummary({ cart });
 

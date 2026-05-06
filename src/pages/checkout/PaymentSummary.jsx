@@ -46,7 +46,7 @@ export function PaymentSummary({ paymentSummary, placeOrder, cart }) {
 
 					<button
 						className="place-order-button button-primary"
-						onClick={() => placeOrder(cart)}
+						onClick={placeOrder}
 						disabled={!cart || cart?.length === 0}
 					>
 						Place your order
