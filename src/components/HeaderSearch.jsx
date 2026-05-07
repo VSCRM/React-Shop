@@ -1,6 +1,6 @@
 import { SearchInput } from './SearchInput';
 import { SearchButton } from './SearchButton';
-import { useHeaderSearch } from '../hooks/useHeaderSearch';
+import { useHeaderSearch } from '@/hooks/useHeaderSearch';
 
 export function HeaderSearch() {
 	const {

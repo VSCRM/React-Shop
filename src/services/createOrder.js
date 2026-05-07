@@ -1,6 +1,6 @@
-import axios from "axios";
+import api from '@/services/api';
 
 export const createOrder = async () => {
-	const response = await axios.post('/api/orders');
+	const response = await api.post('/api/orders');
 	return response.data;
 };

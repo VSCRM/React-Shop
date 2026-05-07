@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import api from '@/services/api';
 
 export function useOrder(orderId) {
 	const [order, setOrder] = useState(null);
@@ -13,7 +13,7 @@ export function useOrder(orderId) {
 			try {
 				setLoading(true);
 				setError(null);
-				const response = await axios.get(`/api/orders/${orderId}?expand=products`);
+				const response = await api.get(`/api/orders/${orderId}?expand=products`);
 				setOrder(response.data);
 			} catch {
 				setError('Could not load order. Please try again.');
@@ -25,5 +25,7 @@ export function useOrder(orderId) {
 		fetchOrder();
 	}, [orderId]);
 
-	return { order, loading, error };
+	return {
+		order, loading, error
+	};
 }

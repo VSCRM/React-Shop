@@ -1,9 +1,9 @@
 import { useParams, Link } from 'react-router';
-import { getTrackedProducts } from '../../utils/getTrackedProducts';
-import { Header } from '../../layout/Header';
+import { getTrackedProducts } from '@/utils/getTrackedProducts';
+import { Header } from '@/layout/Header';
 import { TrackingItem } from './TrackingItem';
 import { TrackingStatusMessage } from './TrackingStatusMessage';
-import { useOrder } from '../../hooks/useOrder';
+import { useOrder } from '@/hooks/useOrder';
 import './TrackingPage.css';
 
 export function TrackingPage() {

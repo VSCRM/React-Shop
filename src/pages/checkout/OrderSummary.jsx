@@ -11,7 +11,7 @@ export function OrderSummary({ cart, deliveryOptions, updateDeliveryOption, remo
 
 				return (
 					<div key={cartItem.productId} className="cart-item-container">
-						<DeliveryDate selectedDeliveryOption={selectedDeliveryOption} />
+						{selectedDeliveryOption && <DeliveryDate selectedDeliveryOption={selectedDeliveryOption} />}
 
 						<CartItemDetails
 							cartItem={cartItem}

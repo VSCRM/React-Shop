@@ -1,4 +1,4 @@
-import { TRACKING_STEPS, PROGRESS_MAP } from '../../utils/constants';
+import { TRACKING_STEPS, PROGRESS_MAP } from '@/utils/constants';
 
 export function TrackingProgress({ status }) {
 	const progressWidth = PROGRESS_MAP[status] ?? '0%';

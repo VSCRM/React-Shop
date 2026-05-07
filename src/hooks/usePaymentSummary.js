@@ -1,18 +1,28 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import api from '@/services/api';
 
-export function usePaymentSummary({cart}) {
+export function usePaymentSummary({ cart }) {
 	const [paymentSummary, setPaymentSummary] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		const fetchPaymentSummary = async () => {
-			const response = await axios.get('/api/payment-summary');
-			setPaymentSummary(response.data);
+			try {
+				setLoading(true);
+				setError(null);
+				const response = await api.get('/api/payment-summary');
+				setPaymentSummary(response.data);
+			} catch {
+				setError('Could not load payment summary. Please try again.');
+			} finally {
+				setLoading(false);
+			}
 		};
 		fetchPaymentSummary();
 	}, [cart]);
 
-	return (
-		paymentSummary
-	);
+	return {
+		paymentSummary, loading, error
+	};
 }

@@ -1,5 +1,5 @@
-import { CartContext } from "./CartContext";
-import { useCart } from "../hooks/useCart";
+import { CartContext } from '@/context/CartContext';
+import { useCart } from '@/hooks/useCart';
 
 export function CartProvider({ children }) {
 	const cartData = useCart();

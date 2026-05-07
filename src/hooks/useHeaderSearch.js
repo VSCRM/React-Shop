@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useLocation, useSearchParams } from 'react-router';
-import { SEARCH_URL_KEY } from '../utils/constants';
-import { buildSearchPath } from '../utils/searchUtils';
+import { SEARCH_URL_KEY } from '@/utils/constants';
+import { buildSearchPath } from '@/utils/searchUtils';
 
 export function useHeaderSearch() {
 	const navigate = useNavigate();

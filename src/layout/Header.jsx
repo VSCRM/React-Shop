@@ -1,7 +1,7 @@
-import { HeaderLogo } from '../components/HeaderLogo';
-import { HeaderSearch } from '../components/HeaderSearch';
-import { HeaderNav } from '../components/HeaderNav';
-import { useCartContext } from '../hooks/useCartContext';
+import { HeaderLogo } from '@/components/HeaderLogo';
+import { HeaderSearch } from '@/components/HeaderSearch';
+import { HeaderNav } from '@/components/HeaderNav';
+import { useCartContext } from '@/hooks/useCartContext';
 import './Header.css';
 
 export function Header() {

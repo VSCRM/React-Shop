@@ -1,6 +1,6 @@
-import axios from "axios";
+import api from '@/services/api';
 
 export const loadToCart = async () => {
-	const response = await axios.get('/api/cart-items?expand=product');
-	return (response.data);
+	const response = await api.get('/api/cart-items?expand=product');
+	return response.data;
 };

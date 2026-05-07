@@ -11,5 +11,7 @@ export function TrackingStatusMessage({ loading, error, isEmpty }) {
 		return <div className="tracking-state-message">No products found for this order.</div>;
 	}
 
-	return null;
+	return (
+		null
+	);
 }

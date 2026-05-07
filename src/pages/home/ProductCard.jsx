@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { formatMoney } from '../../utils/money';
+import { formatMoney } from '@/utils/money';
 import { ProductRating } from './ProductRating';
 import { ProductQuantity } from './ProductQuantity';
 import { AddedMessage } from './AddedMessage';
-import { useFlashMessage } from '../../hooks/useFlashMessage';
+import { useFlashMessage } from '@/hooks/useFlashMessage';
 
 export function ProductCard({ product, addCart }) {
 	const [selectedQuantity, setSelectedQuantity] = useState(1);

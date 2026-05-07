@@ -25,5 +25,7 @@ export function useFlashMessage(duration = 2000) {
 		}, duration);
 	}, [duration]);
 
-	return [active, trigger];
+	return [
+		active, trigger
+	];
 }
