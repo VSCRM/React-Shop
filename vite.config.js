@@ -10,7 +10,7 @@ export default defineConfig({
 		},
 	},
 	server: {
-		open: true, 
+		open: true,
 		proxy: {
 			'/api': {
 				target: 'http://localhost:3000'
@@ -19,5 +19,9 @@ export default defineConfig({
 				target: 'http://localhost:3000'
 			}
 		}
+	},
+	test: {
+		globals: true,
+		environment: 'jsdom',
 	}
 })
