@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { apiImage } from '@/utils/imageUrl';
 import { ProductCard } from './ProductCard';
 
 // ─── Fixtures ─────────────────────────────────────────────────────────────────
@@ -37,7 +38,7 @@ describe('ProductCard', () => {
 		it('renders the product image with correct src and alt', () => {
 			renderCard();
 			const img = screen.getByRole('img', { name: mockProduct.name });
-			expect(img).toHaveAttribute('src', mockProduct.image);
+			expect(img).toHaveAttribute('src', apiImage(mockProduct.image));
 			expect(img).toHaveAttribute('alt', mockProduct.name);
 		});
 
