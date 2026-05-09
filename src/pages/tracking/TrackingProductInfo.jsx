@@ -1,3 +1,5 @@
+import { apiImage } from '@/utils/imageUrl';
+
 export function TrackingProductInfo({ product, quantity }) {
 	return (
 		<>
@@ -5,7 +7,7 @@ export function TrackingProductInfo({ product, quantity }) {
 			<div className="product-info">Quantity: {quantity}</div>
 			<img
 				className="product-image"
-				src={product.image}
+				src={apiImage(product.image)}
 				alt={product.name}
 			/>
 		</>

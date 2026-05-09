@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { staticImage } from '@/utils/imageUrl';
 
 export function HeaderNav({ cart }) {
 	const totalQuantity = cart.reduce((total, cartItem) => total + cartItem.quantity, 0);
@@ -10,7 +11,7 @@ export function HeaderNav({ cart }) {
 			</Link>
 
 			<Link className="cart-link header-link" to="/checkout">
-				<img className="cart-icon" src="images/icons/cart-icon.png" />
+				<img className="cart-icon" src={staticImage('images/icons/cart-icon.png')} />
 				<div className="cart-quantity">{totalQuantity}</div>
 				<div className="cart-text">Cart</div>
 			</Link>

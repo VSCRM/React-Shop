@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { staticImage } from '@/utils/imageUrl';
 
 export function CheckoutHeader({ cart }) {
 	const cartQuantity = cart.reduce((total, item) => total + item.quantity, 0);
@@ -8,8 +9,8 @@ export function CheckoutHeader({ cart }) {
 			<div className="header-content">
 				<div className="checkout-header-left-section">
 					<Link to="/">
-						<img className="logo" src="images/logo.png" />
-						<img className="mobile-logo" src="images/mobile-logo.png" />
+						<img className="logo" src={staticImage('images/logo.png')} />
+						<img className="mobile-logo" src={staticImage('images/mobile-logo.png')} />
 					</Link>
 				</div>
 
@@ -20,7 +21,7 @@ export function CheckoutHeader({ cart }) {
 				</div>
 
 				<div className="checkout-header-right-section">
-					<img src="images/icons/checkout-lock-icon.png" />
+					<img src={staticImage('images/icons/checkout-lock-icon.png')} />
 				</div>
 			</div>
 		</div>

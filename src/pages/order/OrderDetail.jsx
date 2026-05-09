@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { apiImage } from '@/utils/imageUrl';
 import { ProductDetails } from "./ProductDetails";
 import { ProductActions } from "./ProductActions";
 
@@ -9,7 +10,7 @@ export function OrderDetail({ singleOrder, addCart }) {
 				return (
 					<Fragment key={orderProduct.productId}>
 						<div className="product-image-container">
-							<img src={orderProduct.product.image} />
+							<img src={apiImage(orderProduct.product.image)} />
 						</div>
 
 						<ProductDetails orderProduct={orderProduct} addCart={addCart} />

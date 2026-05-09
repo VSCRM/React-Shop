@@ -1,3 +1,5 @@
+import { staticImage } from '@/utils/imageUrl';
+
 export function BuyAgainPicker({ maxQuantity, selectedQuantity, onSelect, onConfirm, onCancel }) {
 	return (
 		<div className="buy-again-picker">
@@ -16,7 +18,7 @@ export function BuyAgainPicker({ maxQuantity, selectedQuantity, onSelect, onConf
 				))}
 			</select>
 			<button className="buy-again-button button-primary" onClick={onConfirm}>
-				<img className="buy-again-icon" src="images/icons/buy-again.png" alt="buy" />
+				<img className="buy-again-icon" src={staticImage('images/icons/buy-again.png')} alt="buy" />
 				<span className="buy-again-message">Add to Cart</span>
 			</button>
 			<button className="buy-again-cancel button-secondary" onClick={onCancel}>

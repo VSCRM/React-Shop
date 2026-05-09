@@ -1,3 +1,4 @@
+import { staticImage } from '@/utils/imageUrl';
 import { ProductInfo } from "./ProductInfo";
 import { BuyAgainPicker } from "./BuyAgainPicker";
 import { useFlashMessage } from "../../hooks/useFlashMessage";
@@ -25,7 +26,7 @@ export function ProductDetails({ orderProduct, addCart }) {
 
 			{!showPicker ? (
 				<button className="buy-again-button button-primary" onClick={handleAddToCart}>
-					<img className="buy-again-icon" src="images/icons/buy-again.png" alt="buy" />
+					<img className="buy-again-icon" src={staticImage('images/icons/buy-again.png')} alt="buy" />
 					<span className="buy-again-message">
 						{added ? 'Added!' : 'Add to Cart'}
 					</span>

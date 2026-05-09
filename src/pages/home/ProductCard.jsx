@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { apiImage } from '@/utils/imageUrl';
 import { formatMoney } from '@/utils/money';
 import { ProductRating } from './ProductRating';
 import { ProductQuantity } from './ProductQuantity';
@@ -17,7 +18,7 @@ export function ProductCard({ product, addCart }) {
 	return (
 		<div className="product-container">
 			<div className="product-image-container">
-				<img className="product-image" src={product.image} alt={product.name} />
+				<img className="product-image" src={apiImage(product.image)} alt={product.name} />
 			</div>
 
 			<div className="product-name limit-text-to-2-lines">

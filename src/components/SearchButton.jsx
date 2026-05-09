@@ -1,3 +1,5 @@
+import { staticImage } from '@/utils/imageUrl';
+
 export function SearchButton({ hasText, onClear }) {
 	return (
 		<button
@@ -8,7 +10,7 @@ export function SearchButton({ hasText, onClear }) {
 		>
 			<img
 				className="search-icon"
-				src={hasText ? 'images/icons/search-icon.png' : 'images/icons/search-icon.png'}
+				src={staticImage('images/icons/search-icon.png')}
 			/>
 		</button>
 	);
