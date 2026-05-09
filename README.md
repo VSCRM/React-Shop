@@ -57,31 +57,133 @@ A fully functional e-commerce single-page application built with React 19. Brows
 ## 🏗️ Project Structure
 
 ```
-src/
-├── components/          # Shared UI components (Header, Search, ErrorBoundary)
-├── context/             # CartContext + CartProvider (global cart state)
-├── hooks/               # Custom React hooks
-│   ├── useCart.js           # Cart state aggregator
-│   ├── useCartActions.js    # Add / remove / update cart items
-│   ├── useCartData.js       # Fetches cart from API
-│   ├── useCartItemHandlers.js
-│   ├── useProducts.js       # Fetches product catalog
-│   ├── useOrder.js          # Fetches single order
-│   ├── useOrders.js         # Fetches order history
-│   ├── useDeliveryOptions.js
-│   ├── usePaymentSummary.js
-│   ├── useFlashMessage.js   # Temporary "Added to cart" notification
-│   ├── useHeaderSearch.js   # Search input state and filtering
-│   ├── useDebounce.js       # Debounces search input
-│   └── useBuyAgain.js       # Re-adds a past order item to cart
-├── pages/
-│   ├── home/            # HomePage, ProductCard, ProductRating, ProductQuantity
-│   ├── checkout/        # CheckoutPage, CartItemDetails, DeliveryOptions, PaymentSummary
-│   ├── order/           # OrdersPage, OrderDetail, BuyAgainPicker
-│   └── tracking/        # TrackingPage, TrackingProgress, TrackingStatusMessage
-├── services/            # API call wrappers (addToCart, createOrder, deleteCartItem, …)
-├── utils/               # imageUrl helpers (staticImage / apiImage)
-└── main.jsx             # App entry point with BrowserRouter + CartProvider
+React-Shop/
+├── public/                          # Static assets served as-is by Vite (not bundled).
+│   │                                # Contains UI icons and logo images used directly
+│   │                                # in JSX via staticImage() helper.
+│   │                                # Product images and ratings are served by the
+│   │                                # backend (Render.com) and are not included here.
+├── src/
+│   ├── components/
+│   │   ├── ErrorBoundary.jsx        # Catches runtime errors, shows fallback UI
+│   │   ├── ErrorBoundary.test.jsx
+│   │   ├── HeaderLogo.jsx           # Logo with link to home
+│   │   ├── HeaderNav.jsx            # Cart icon and navigation
+│   │   ├── HeaderSearch.jsx         # Search bar container
+│   │   ├── SearchButton.jsx         # Toggle search icon button
+│   │   └── SearchInput.jsx          # Controlled search text input
+│   ├── context/
+│   │   ├── CartContext.jsx          # React context definition
+│   │   ├── CartProvider.jsx         # Context provider with full cart state
+│   │   └── CartProvider.test.jsx
+│   ├── hooks/
+│   │   ├── useBuyAgain.js           # Re-adds a past order item to cart
+│   │   ├── useBuyAgain.test.js
+│   │   ├── useCart.js               # Aggregates cart state from sub-hooks
+│   │   ├── useCartActions.js        # Add / remove / update cart items
+│   │   ├── useCartActions.test.jsx
+│   │   ├── useCartContext.js        # Reads cart state from context
+│   │   ├── useCartContext.test.jsx
+│   │   ├── useCartData.js           # Fetches cart items from API
+│   │   ├── useCartData.test.js
+│   │   ├── useCartItemHandlers.js   # Quantity and delivery change handlers
+│   │   ├── useCartItemHandlers.test.js
+│   │   ├── useDebounce.js           # Delays value update (search optimisation)
+│   │   ├── useDebounce.test.js
+│   │   ├── useDeliveryOptions.js    # Fetches delivery options from API
+│   │   ├── useDeliveryOptions.test.js
+│   │   ├── useFlashMessage.js       # Temporary "Added to cart" notification state
+│   │   ├── useFlashMessage.test.js
+│   │   ├── useHeaderSearch.js       # Search input state and product filtering
+│   │   ├── useHeaderSearch.test.jsx
+│   │   ├── useOrder.js              # Fetches a single order by ID
+│   │   ├── useOrders.js             # Fetches full order history
+│   │   ├── usePaymentSummary.js     # Fetches cart totals from API
+│   │   └── useProducts.js           # Fetches product catalog from API
+│   │   └── useProducts.test.js
+│   ├── layout/
+│   │   ├── Header.jsx               # App-wide header with logo, search, cart
+│   │   └── Header.css
+│   ├── pages/
+│   │   ├── home/
+│   │   │   ├── AddedMessage.jsx     # "Added to cart" flash notification
+│   │   │   ├── HomePage.jsx         # Product catalog page
+│   │   │   ├── HomePage.css
+│   │   │   ├── NoSearchResults.jsx  # Empty state for search
+│   │   │   ├── ProductCard.jsx      # Single product tile with add-to-cart
+│   │   │   ├── ProductCard.test.jsx
+│   │   │   ├── ProductQuantity.jsx  # Quantity selector dropdown
+│   │   │   ├── ProductRating.jsx    # Star rating display
+│   │   │   └── ProductsGrid.jsx     # Responsive grid of ProductCards
+│   │   ├── checkout/
+│   │   │   ├── CartItemActions.jsx  # Update / delete actions per cart item
+│   │   │   ├── CartItemDetails.jsx  # Product image, name, price in cart
+│   │   │   ├── CheckoutHeader.jsx   # Checkout-specific header with logo
+│   │   │   ├── CheckoutHeader.css
+│   │   │   ├── CheckoutPage.jsx     # Full checkout page layout
+│   │   │   ├── CheckoutPage.css
+│   │   │   ├── DeleteConfirm.jsx    # Inline delete confirmation prompt
+│   │   │   ├── DeliveryDate.jsx     # Calculated estimated arrival date
+│   │   │   ├── DeliveryOptions.jsx  # Shipping speed selector per item
+│   │   │   ├── OrderSummary.jsx     # Cart item list with actions
+│   │   │   ├── PaymentSummary.jsx   # Totals, tax, and place order button
+│   │   │   ├── QuantityDisplay.jsx  # Read-only quantity label
+│   │   │   └── QuantityEditor.jsx   # Editable quantity input
+│   │   ├── order/
+│   │   │   ├── BuyAgainPicker.jsx   # Quantity selector for re-ordering
+│   │   │   ├── OrderContainer.jsx   # Wrapper for a single order card
+│   │   │   ├── OrderDetail.jsx      # Product list within an order
+│   │   │   ├── OrderHeader.jsx      # Order date, total, and ID
+│   │   │   ├── OrdersPage.jsx       # Full order history page
+│   │   │   ├── OrdersPage.css
+│   │   │   ├── ProductActions.jsx   # Track package / buy again buttons
+│   │   │   ├── ProductDetails.jsx   # Product name, price in order view
+│   │   │   └── ProductInfo.jsx      # Product image and quantity in order
+│   │   └── tracking/
+│   │       ├── TrackingDeliveryHeader.jsx  # Estimated delivery heading
+│   │       ├── TrackingItem.jsx            # Single tracked product card
+│   │       ├── TrackingPage.jsx            # Full tracking page
+│   │       ├── TrackingPage.css
+│   │       ├── TrackingProductInfo.jsx     # Product image, name, quantity
+│   │       ├── TrackingProgress.jsx        # Visual progress bar (steps)
+│   │       ├── TrackingStatusMessage.jsx   # Current status text
+│   │       └── (TrackingPage.css)
+│   ├── services/
+│   │   ├── addToCart.js             # POST /api/cart-items
+│   │   ├── api.js                   # Axios instance with baseURL from env
+│   │   ├── api.test.js
+│   │   ├── createOrder.js           # POST /api/orders
+│   │   ├── deleteCartItem.js        # DELETE /api/cart-items/:id
+│   │   ├── loadToCart.js            # Bulk-load items into cart
+│   │   ├── updateCartDelivery.js    # PUT delivery option on cart item
+│   │   └── updateCartQuantity.js    # PUT quantity on cart item
+│   ├── utils/
+│   │   ├── computeStatus.js         # Derives tracking status from order date
+│   │   ├── computeStatus.test.js
+│   │   ├── constants.js             # Shared app-wide constants
+│   │   ├── getTrackedProducts.js    # Filters products for tracking page
+│   │   ├── getTrackedProducts.test.js
+│   │   ├── imageUrl.js              # staticImage() and apiImage() helpers
+│   │   ├── money.js                 # Formats cents → currency string
+│   │   ├── money.test.js
+│   │   ├── searchUtils.js           # Product search/filter logic
+│   │   └── searchUtils.test.js
+│   ├── App.jsx                      # Route definitions
+│   ├── index.css                    # Global styles
+│   └── main.jsx                     # Entry point — BrowserRouter + CartProvider
+├── .editorconfig
+├── .env.example                     # Template for environment variables
+├── .env.production                  # Production API URL (committed)
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── jsconfig.json                    # Path aliases (@/ → src/)
+├── LICENSE
+├── package-lock.json
+├── package.json
+├── README.md
+├── setupTests.js                    # Imports jest-dom matchers for all tests
+└── vite.config.js                   # Build config, proxy, base path, test env
 ```
 
 ---
