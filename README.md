@@ -172,6 +172,7 @@ React-Shop/
 │   ├── index.css                    # Global styles
 │   └── main.jsx                     # Entry point — BrowserRouter + CartProvider
 ├── .editorconfig
+├── .env                             # Local development API URL (committed)
 ├── .env.example                     # Template for environment variables
 ├── .env.production                  # Production API URL (committed)
 ├── .gitignore
