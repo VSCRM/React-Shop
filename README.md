@@ -235,6 +235,15 @@ npm run deploy
 
 ---
 
+## 🔀 Branches
+
+| Branch | Description |
+|---|---|
+| [`main`](https://github.com/VSCRM/React-Shop/tree/main) | JavaScript version — deployed |
+| [`typescript-version`](https://github.com/VSCRM/React-Shop/tree/typescript-version) | TypeScript version — source only |
+
+---
+
 ## 🌐 Deployment
 
 The frontend is deployed to **GitHub Pages** via the `gh-pages` package.
