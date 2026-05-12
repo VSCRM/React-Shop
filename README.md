@@ -1,9 +1,13 @@
-# 🛍️ React Shop
+# 🛍️ React Shop — TypeScript Edition
 
-A fully functional e-commerce single-page application built with React 19. Browse products, manage your cart, place orders, and track deliveries — all powered by a live REST API backend.
+A fully functional e-commerce single-page application built with **React 19** and **TypeScript**. This is the TypeScript version of the project — all components, hooks, services, and utilities are fully typed with strict mode enabled.
 
 **Live demo:** [vscrm.github.io/React-Shop](https://vscrm.github.io/React-Shop/)
 **Backend repository:** [React-Shop-Backend](https://github.com/VSCRM/React-Shop-Backend)
+
+> 🔀 **Branches:**
+> `main` — JavaScript version
+> `typescript-version` — this branch, full TypeScript
 
 ---
 
@@ -14,7 +18,7 @@ A fully functional e-commerce single-page application built with React 19. Brows
 | Home | `/` | Product catalog with search and add-to-cart |
 | Checkout | `/checkout` | Cart review, delivery options, order placement |
 | Orders | `/orders` | Order history with buy-again functionality |
-| Tracking | `/tracking/:orderId` | Real-time delivery tracking progress |
+| Tracking | `/tracking/:orderId/:productId?` | Real-time delivery tracking progress |
 
 ---
 
@@ -25,14 +29,15 @@ A fully functional e-commerce single-page application built with React 19. Brows
 | Technology | Version | Purpose |
 |---|---|---|
 | [React](https://react.dev/) | 19 | UI library with the latest concurrent features |
+| [TypeScript](https://www.typescriptlang.org/) | 6 | Static typing with strict mode enabled |
 | [React Router](https://reactrouter.com/) | 7 | Client-side routing with `BrowserRouter` and `basename` support |
-| [Vite](https://vite.dev/) | 8 | Build tool and dev server with HMR and proxy support |
+| [Vite](https://vite.dev/) | 8 | Build tool and dev server with HMR |
 
 ### Data & Utilities
 
 | Library | Version | Purpose |
 |---|---|---|
-| [Axios](https://axios-http.com/) | 1.x | HTTP client for all API requests via a shared `api.js` instance |
+| [Axios](https://axios-http.com/) | 1.x | HTTP client for all API requests via a shared `api.ts` instance |
 | [Day.js](https://day.js.org/) | 1.x | Lightweight date formatting for delivery and order dates |
 
 ### Testing
@@ -65,126 +70,157 @@ React-Shop/
 │   │                                # backend (Render.com) and are not included here.
 ├── src/
 │   ├── components/
-│   │   ├── ErrorBoundary.jsx        # Catches runtime errors, shows fallback UI
-│   │   ├── ErrorBoundary.test.jsx
-│   │   ├── HeaderLogo.jsx           # Logo with link to home
-│   │   ├── HeaderNav.jsx            # Cart icon and navigation
-│   │   ├── HeaderSearch.jsx         # Search bar container
-│   │   ├── SearchButton.jsx         # Toggle search icon button
-│   │   └── SearchInput.jsx          # Controlled search text input
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── ErrorBoundary.test.tsx
+│   │   ├── HeaderLogo.tsx
+│   │   ├── HeaderNav.tsx
+│   │   ├── HeaderSearch.tsx
+│   │   ├── SearchButton.tsx
+│   │   └── SearchInput.tsx
 │   ├── context/
-│   │   ├── CartContext.jsx          # React context definition
-│   │   ├── CartProvider.jsx         # Context provider with full cart state
-│   │   └── CartProvider.test.jsx
+│   │   ├── CartContext.tsx
+│   │   ├── CartProvider.tsx
+│   │   └── CartProvider.test.tsx
 │   ├── hooks/
-│   │   ├── useBuyAgain.js           # Re-adds a past order item to cart
-│   │   ├── useBuyAgain.test.js
-│   │   ├── useCart.js               # Aggregates cart state from sub-hooks
-│   │   ├── useCartActions.js        # Add / remove / update cart items
-│   │   ├── useCartActions.test.jsx
-│   │   ├── useCartContext.js        # Reads cart state from context
-│   │   ├── useCartContext.test.jsx
-│   │   ├── useCartData.js           # Fetches cart items from API
-│   │   ├── useCartData.test.js
-│   │   ├── useCartItemHandlers.js   # Quantity and delivery change handlers
-│   │   ├── useCartItemHandlers.test.js
-│   │   ├── useDebounce.js           # Delays value update (search optimisation)
-│   │   ├── useDebounce.test.js
-│   │   ├── useDeliveryOptions.js    # Fetches delivery options from API
-│   │   ├── useDeliveryOptions.test.js
-│   │   ├── useFlashMessage.js       # Temporary "Added to cart" notification state
-│   │   ├── useFlashMessage.test.js
-│   │   ├── useHeaderSearch.js       # Search input state and product filtering
-│   │   ├── useHeaderSearch.test.jsx
-│   │   ├── useOrder.js              # Fetches a single order by ID
-│   │   ├── useOrders.js             # Fetches full order history
-│   │   ├── usePaymentSummary.js     # Fetches cart totals from API
-│   │   └── useProducts.js           # Fetches product catalog from API
-│   │   └── useProducts.test.js
+│   │   ├── useBuyAgain.ts
+│   │   ├── useBuyAgain.test.ts
+│   │   ├── useCart.ts
+│   │   ├── useCartActions.ts
+│   │   ├── useCartActions.test.tsx
+│   │   ├── useCartContext.ts
+│   │   ├── useCartContext.test.tsx
+│   │   ├── useCartData.ts
+│   │   ├── useCartData.test.ts
+│   │   ├── useCartItemHandlers.ts
+│   │   ├── useCartItemHandlers.test.ts
+│   │   ├── useDebounce.ts
+│   │   ├── useDebounce.test.ts
+│   │   ├── useDeliveryOptions.ts
+│   │   ├── useDeliveryOptions.test.ts
+│   │   ├── useFlashMessage.ts
+│   │   ├── useFlashMessage.test.ts
+│   │   ├── useHeaderSearch.ts
+│   │   ├── useHeaderSearch.test.tsx
+│   │   ├── useOrder.ts
+│   │   ├── useOrders.ts
+│   │   ├── usePaymentSummary.ts
+│   │   ├── useProducts.ts
+│   │   └── useProducts.test.ts
 │   ├── layout/
-│   │   ├── Header.jsx               # App-wide header with logo, search, cart
+│   │   ├── Header.tsx
 │   │   └── Header.css
 │   ├── pages/
 │   │   ├── home/
-│   │   │   ├── AddedMessage.jsx     # "Added to cart" flash notification
-│   │   │   ├── HomePage.jsx         # Product catalog page
+│   │   │   ├── AddedMessage.tsx
+│   │   │   ├── HomePage.tsx
 │   │   │   ├── HomePage.css
-│   │   │   ├── NoSearchResults.jsx  # Empty state for search
-│   │   │   ├── ProductCard.jsx      # Single product tile with add-to-cart
-│   │   │   ├── ProductCard.test.jsx
-│   │   │   ├── ProductQuantity.jsx  # Quantity selector dropdown
-│   │   │   ├── ProductRating.jsx    # Star rating display
-│   │   │   └── ProductsGrid.jsx     # Responsive grid of ProductCards
+│   │   │   ├── NoSearchResults.tsx
+│   │   │   ├── ProductCard.tsx
+│   │   │   ├── ProductCard.test.tsx
+│   │   │   ├── ProductQuantity.tsx
+│   │   │   ├── ProductRating.tsx
+│   │   │   └── ProductsGrid.tsx
 │   │   ├── checkout/
-│   │   │   ├── CartItemActions.jsx  # Update / delete actions per cart item
-│   │   │   ├── CartItemDetails.jsx  # Product image, name, price in cart
-│   │   │   ├── CheckoutHeader.jsx   # Checkout-specific header with logo
+│   │   │   ├── CartItemActions.tsx
+│   │   │   ├── CartItemDetails.tsx
+│   │   │   ├── CheckoutHeader.tsx
 │   │   │   ├── CheckoutHeader.css
-│   │   │   ├── CheckoutPage.jsx     # Full checkout page layout
+│   │   │   ├── CheckoutPage.tsx
 │   │   │   ├── CheckoutPage.css
-│   │   │   ├── DeleteConfirm.jsx    # Inline delete confirmation prompt
-│   │   │   ├── DeliveryDate.jsx     # Calculated estimated arrival date
-│   │   │   ├── DeliveryOptions.jsx  # Shipping speed selector per item
-│   │   │   ├── OrderSummary.jsx     # Cart item list with actions
-│   │   │   ├── PaymentSummary.jsx   # Totals, tax, and place order button
-│   │   │   ├── QuantityDisplay.jsx  # Read-only quantity label
-│   │   │   └── QuantityEditor.jsx   # Editable quantity input
+│   │   │   ├── DeleteConfirm.tsx
+│   │   │   ├── DeliveryDate.tsx
+│   │   │   ├── DeliveryOptions.tsx
+│   │   │   ├── OrderSummary.tsx
+│   │   │   ├── PaymentSummary.tsx
+│   │   │   ├── QuantityDisplay.tsx
+│   │   │   └── QuantityEditor.tsx
 │   │   ├── order/
-│   │   │   ├── BuyAgainPicker.jsx   # Quantity selector for re-ordering
-│   │   │   ├── OrderContainer.jsx   # Wrapper for a single order card
-│   │   │   ├── OrderDetail.jsx      # Product list within an order
-│   │   │   ├── OrderHeader.jsx      # Order date, total, and ID
-│   │   │   ├── OrdersPage.jsx       # Full order history page
+│   │   │   ├── BuyAgainPicker.tsx
+│   │   │   ├── OrderContainer.tsx
+│   │   │   ├── OrderDetail.tsx
+│   │   │   ├── OrderHeader.tsx
+│   │   │   ├── OrdersPage.tsx
 │   │   │   ├── OrdersPage.css
-│   │   │   ├── ProductActions.jsx   # Track package / buy again buttons
-│   │   │   ├── ProductDetails.jsx   # Product name, price in order view
-│   │   │   └── ProductInfo.jsx      # Product image and quantity in order
+│   │   │   ├── ProductActions.tsx
+│   │   │   ├── ProductDetails.tsx
+│   │   │   └── ProductInfo.tsx
 │   │   └── tracking/
-│   │       ├── TrackingDeliveryHeader.jsx  # Estimated delivery heading
-│   │       ├── TrackingItem.jsx            # Single tracked product card
-│   │       ├── TrackingPage.jsx            # Full tracking page
+│   │       ├── TrackingDeliveryHeader.tsx
+│   │       ├── TrackingItem.tsx
+│   │       ├── TrackingPage.tsx
 │   │       ├── TrackingPage.css
-│   │       ├── TrackingProductInfo.jsx     # Product image, name, quantity
-│   │       ├── TrackingProgress.jsx        # Visual progress bar (steps)
-│   │       ├── TrackingStatusMessage.jsx   # Current status text
-│   │       └── (TrackingPage.css)
+│   │       ├── TrackingProductInfo.tsx
+│   │       ├── TrackingProgress.tsx
+│   │       └── TrackingStatusMessage.tsx
 │   ├── services/
-│   │   ├── addToCart.js             # POST /api/cart-items
-│   │   ├── api.js                   # Axios instance with baseURL from env
-│   │   ├── api.test.js
-│   │   ├── createOrder.js           # POST /api/orders
-│   │   ├── deleteCartItem.js        # DELETE /api/cart-items/:id
-│   │   ├── loadToCart.js            # Bulk-load items into cart
-│   │   ├── updateCartDelivery.js    # PUT delivery option on cart item
-│   │   └── updateCartQuantity.js    # PUT quantity on cart item
+│   │   ├── addToCart.ts
+│   │   ├── api.ts
+│   │   ├── api.test.ts
+│   │   ├── createOrder.ts
+│   │   ├── deleteCartItem.ts
+│   │   ├── loadToCart.ts
+│   │   ├── updateCartDelivery.ts
+│   │   └── updateCartQuantity.ts
+│   ├── types/
+│   │   └── index.ts                 # All shared interfaces and types
+│   │                                # (Product, CartItem, Order, DeliveryOption,
+│   │                                #  PaymentSummary, TrackingStatus, CartContextValue)
 │   ├── utils/
-│   │   ├── computeStatus.js         # Derives tracking status from order date
-│   │   ├── computeStatus.test.js
-│   │   ├── constants.js             # Shared app-wide constants
-│   │   ├── getTrackedProducts.js    # Filters products for tracking page
-│   │   ├── getTrackedProducts.test.js
-│   │   ├── imageUrl.js              # staticImage() and apiImage() helpers
-│   │   ├── money.js                 # Formats cents → currency string
-│   │   ├── money.test.js
-│   │   ├── searchUtils.js           # Product search/filter logic
-│   │   └── searchUtils.test.js
-│   ├── App.jsx                      # Route definitions
-│   ├── index.css                    # Global styles
-│   └── main.jsx                     # Entry point — BrowserRouter + CartProvider
+│   │   ├── computeStatus.ts
+│   │   ├── computeStatus.test.ts
+│   │   ├── constants.ts
+│   │   ├── getTrackedProducts.ts
+│   │   ├── getTrackedProducts.test.ts
+│   │   ├── imageUrl.ts
+│   │   ├── money.ts
+│   │   ├── money.test.ts
+│   │   ├── searchUtils.ts
+│   │   └── searchUtils.test.ts
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts                # <reference types="vite/client" />
 ├── .editorconfig
-├── .env                             # Local development API URL (committed)
+├── .env                             # Local development API URL (git-ignored)
 ├── .env.example                     # Template for environment variables
 ├── .env.production                  # Production API URL (committed)
 ├── .gitignore
-├── eslint.config.js
+├── eslint.config.ts
 ├── index.html
-├── jsconfig.json                    # Path aliases (@/ → src/)
+├── jsconfig.json
 ├── LICENSE
 ├── package-lock.json
 ├── package.json
 ├── README.md
-├── setupTests.js                    # Imports jest-dom matchers for all tests
-└── vite.config.js                   # Build config, proxy, base path, test env
+├── setupTests.ts                    # Imports jest-dom matchers for all tests
+├── tsconfig.json                    # TypeScript config with strict mode and path aliases
+├── tsconfig.node.json
+└── vite.config.ts                   # Build config, proxy, base path, test env
+```
+
+---
+
+## 🔷 TypeScript Architecture
+
+All domain types are defined in `src/types/index.ts` and imported across the codebase:
+
+```ts
+// Key types
+interface Product { id: string; name: string; image: string; priceCents: number; rating: Rating; }
+interface CartItem { productId: string; quantity: number; deliveryOptionId: string; product: Product; }
+interface Order { id: string; orderTimeMs: number; totalCostCents: number; products: OrderProduct[]; }
+type TrackingStatus = 'Preparing' | 'Shipped' | 'Delivered';
+interface CartContextValue { cart: CartItem[]; addCart: (...) => Promise<void>; ... }
+```
+
+`useDebounce` is a generic hook:
+```ts
+function useDebounce<T>(rawValue: T, delayMs?: number): T
+```
+
+`useFlashMessage` returns a typed tuple:
+```ts
+function useFlashMessage(duration?: number): [boolean, () => void]
 ```
 
 ---
@@ -204,13 +240,17 @@ React-Shop/
 
 ## ⚙️ Environment Variables
 
-Create a `.env.production` file in the project root:
+Create a `.env` file in the project root for local development:
 
 ```env
-VITE_API_URL=https://your-backend.onrender.com
+VITE_API_URL=http://localhost:3000
 ```
 
-For local development the Vite proxy handles `/api` and `/images` automatically — no env variable needed.
+`.env.production` is committed and used automatically during `npm run build` / `npm run deploy`:
+
+```env
+VITE_API_URL=https://react-shop-backend-jg62.onrender.com
+```
 
 ---
 
@@ -219,6 +259,9 @@ For local development the Vite proxy handles `/api` and `/images` automatically 
 ```bash
 # Install dependencies
 npm install
+
+# Type check
+npx tsc --noEmit
 
 # Start dev server (proxies /api and /images to localhost:3000)
 npm run dev
@@ -244,7 +287,7 @@ npm run deploy
 # Builds the project and pushes /dist to the gh-pages branch automatically
 ```
 
-`vite.config.js` is configured with `base: '/React-Shop/'` to match the GitHub Pages URL structure.
+`vite.config.ts` is configured with `base: '/React-Shop/'` to match the GitHub Pages URL structure.
 
 ---
 
