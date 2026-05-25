@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
 import { addToCart } from '@/services/addToCart';
 import { updateCartQuantity } from '@/services/updateCartQuantity';
@@ -8,51 +9,51 @@ import { createOrder } from '@/services/createOrder';
 export function useCartActions(setCart, loadCart) {
 	const navigate = useNavigate();
 
-	const addCart = async (productId, quantity) => {
+	const addCart = useCallback(async (productId, quantity) => {
 		try {
 			await addToCart(productId, quantity);
 			await loadCart();
-		} catch {
-			console.error('Failed to add item to cart');
+		} catch (err) {
+			console.error('Failed to add item to cart', err);
 		}
-	};
+	}, [loadCart]);
 
-	const updateDeliveryOption = async (productId, deliveryOptionId) => {
+	const updateDeliveryOption = useCallback(async (productId, deliveryOptionId) => {
 		try {
 			await updateCartDelivery(productId, deliveryOptionId);
 			await loadCart();
-		} catch {
-			console.error('Failed to update delivery option');
+		} catch (err) {
+			console.error('Failed to update delivery option', err);
 		}
-	};
+	}, [loadCart]);
 
-	const updateQuantity = async (productId, quantity) => {
+	const updateQuantity = useCallback(async (productId, quantity) => {
 		try {
 			await updateCartQuantity(productId, quantity);
 			await loadCart();
-		} catch {
-			console.error('Failed to update quantity');
+		} catch (err) {
+			console.error('Failed to update quantity', err);
 		}
-	};
+	}, [loadCart]);
 
-	const removeItem = async (productId) => {
+	const removeItem = useCallback(async (productId) => {
 		try {
 			await deleteCartItem({ cartItem: { productId } });
 			await loadCart();
-		} catch {
-			console.error('Failed to remove item');
+		} catch (err) {
+			console.error('Failed to remove item', err);
 		}
-	};
+	}, [loadCart]);
 
-	const placeOrder = async () => {
+	const placeOrder = useCallback(async () => {
 		try {
 			await createOrder();
 			await loadCart();
 			navigate('/orders');
-		} catch {
-			console.error('Failed to place order');
+		} catch (err) {
+			console.error('Failed to place order', err);
 		}
-	};
+	}, [loadCart, navigate]);
 
 	return {
 		addCart, updateDeliveryOption, updateQuantity, removeItem, placeOrder

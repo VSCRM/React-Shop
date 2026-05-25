@@ -5,6 +5,9 @@ export function useCartData() {
 	const [cart, setCart] = useState([]);
 	const [cartError, setCartError] = useState(null);
 
+	// Exposed for manual refetch after mutations.
+	// Note: does not guard against unmount — callers (useCartActions)
+	// are always mounted for the lifetime of CartProvider, so this is safe.
 	const loadCart = useCallback(async () => {
 		try {
 			setCartError(null);
@@ -16,6 +19,7 @@ export function useCartData() {
 	}, []);
 
 	useEffect(() => {
+		const controller = new AbortController();
 		let cancelled = false;
 
 		const init = async () => {
@@ -29,7 +33,10 @@ export function useCartData() {
 		};
 
 		init();
-		return () => { cancelled = true; };
+		return () => {
+			cancelled = true;
+			controller.abort();
+		};
 	}, []);
 
 	return {

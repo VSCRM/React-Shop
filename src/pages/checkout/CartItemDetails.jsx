@@ -1,8 +1,8 @@
 import { apiImage } from '@/utils/imageUrl';
-import { formatMoney } from "../../utils/money";
-import { DeliveryOptions } from "./DeliveryOptions";
-import { CartItemActions } from "./CartItemActions";
-import { useCartItemHandlers } from "../../hooks/useCartItemHandlers";
+import { formatMoney } from '@/utils/money';
+import { DeliveryOptions } from './DeliveryOptions';
+import { CartItemActions } from './CartItemActions';
+import { useCartItemHandlers } from '@/hooks/useCartItemHandlers';
 
 export function CartItemDetails({ cartItem, deliveryOptions, updateDeliveryOption, removeItem, updateQuantity }) {
 	const handlers = useCartItemHandlers(cartItem, updateQuantity, removeItem);

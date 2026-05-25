@@ -10,7 +10,10 @@ export function OrderDetail({ singleOrder, addCart }) {
 				return (
 					<Fragment key={orderProduct.productId}>
 						<div className="product-image-container">
-							<img src={apiImage(orderProduct.product.image)} />
+							<img
+								src={apiImage(orderProduct.product.image)}
+								alt={orderProduct.product.name}
+							/>
 						</div>
 
 						<ProductDetails orderProduct={orderProduct} addCart={addCart} />

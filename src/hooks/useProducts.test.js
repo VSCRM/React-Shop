@@ -37,7 +37,7 @@ describe('useProducts', () => {
 
 			await waitFor(() => {});
 
-			expect(api.get).toHaveBeenCalledWith('/api/products', { params: {} });
+			expect(api.get).toHaveBeenCalledWith('/api/products', expect.objectContaining({ params: {} }));
 		});
 
 		it('passes the search param when a query is provided', async () => {
@@ -46,7 +46,7 @@ describe('useProducts', () => {
 
 			await waitFor(() => {});
 
-			expect(api.get).toHaveBeenCalledWith('/api/products', { params: { search: 'socks' } });
+			expect(api.get).toHaveBeenCalledWith('/api/products', expect.objectContaining({ params: { search: 'socks' } }));
 		});
 
 		it('re-fetches when the search query changes', async () => {

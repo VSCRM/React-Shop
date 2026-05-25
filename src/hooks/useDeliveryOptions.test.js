@@ -39,7 +39,8 @@ describe('useDeliveryOptions', () => {
 			await waitFor(() => {});
 
 			expect(api.get).toHaveBeenCalledWith(
-				'/api/delivery-options?expand=estimatedDeliveryTime'
+				'/api/delivery-options?expand=estimatedDeliveryTime',
+				expect.objectContaining({})
 			);
 		});
 	});

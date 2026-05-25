@@ -1,4 +1,4 @@
-import { formatMoney } from "../../utils/money";
+import { formatMoney } from '@/utils/money';
 
 export function PaymentSummary({ paymentSummary, placeOrder, cart }) {
 	return (
@@ -47,7 +47,7 @@ export function PaymentSummary({ paymentSummary, placeOrder, cart }) {
 					<button
 						className="place-order-button button-primary"
 						onClick={placeOrder}
-						disabled={!cart || cart?.length === 0}
+						disabled={!cart || cart.length === 0}
 					>
 						Place your order
 					</button>
