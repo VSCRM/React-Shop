@@ -1,5 +1,5 @@
-import type { Product } from '@/types';
-import { apiImage } from '@/utils/imageUrl';
+import type { Product } from "@/types";
+import { apiImage } from "@/utils/imageUrl";
 
 interface Props {
 	product: Product;
@@ -11,7 +11,11 @@ export function TrackingProductInfo({ product, quantity }: Props) {
 		<>
 			<div className="product-info">{product.name}</div>
 			<div className="product-info">Quantity: {quantity}</div>
-			<img className="product-image" src={apiImage(product.image)} alt={product.name} />
+			<img
+				className="product-image"
+				src={apiImage(product.image)}
+				alt={product.name}
+			/>
 		</>
 	);
 }

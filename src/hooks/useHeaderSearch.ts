@@ -1,21 +1,23 @@
-import type { ChangeEvent, FormEvent } from 'react';
-import { useState } from 'react';
-import { useNavigate, useLocation, useSearchParams } from 'react-router';
-import { SEARCH_URL_KEY } from '@/utils/constants';
-import { buildSearchPath } from '@/utils/searchUtils';
+import type { ChangeEvent, FormEvent } from "react";
+import { useState } from "react";
+import { useNavigate, useLocation, useSearchParams } from "react-router";
+import { SEARCH_URL_KEY } from "@/utils/constants";
+import { buildSearchPath } from "@/utils/searchUtils";
 
 export function useHeaderSearch() {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [searchInputValue, setSearchInputValue] = useState('');
+	const [searchInputValue, setSearchInputValue] = useState("");
 
-	const isOnHomePage = location.pathname === '/';
-	const searchQueryFromUrl = searchParams.get(SEARCH_URL_KEY) ?? '';
+	const isOnHomePage = location.pathname === "/";
+	const searchQueryFromUrl = searchParams.get(SEARCH_URL_KEY) ?? "";
 	const displayValue = isOnHomePage ? searchQueryFromUrl : searchInputValue;
 
 	const handleHomeSearch = (value: string) => {
-		setSearchParams(value ? { [SEARCH_URL_KEY]: value } : {}, { replace: true });
+		setSearchParams(value ? { [SEARCH_URL_KEY]: value } : {}, {
+			replace: true,
+		});
 	};
 
 	const handleOtherSearch = (value: string) => {
@@ -35,7 +37,7 @@ export function useHeaderSearch() {
 	};
 
 	const handleClearSearch = () => {
-		isOnHomePage ? handleHomeSearch('') : handleOtherSearch('');
+		isOnHomePage ? handleHomeSearch("") : handleOtherSearch("");
 	};
 
 	return {

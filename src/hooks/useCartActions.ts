@@ -1,43 +1,51 @@
-import type { Dispatch, SetStateAction } from 'react';
-import type { CartItem } from '@/types';
-import { useNavigate } from 'react-router';
-import { addToCart } from '@/services/addToCart';
-import { updateCartQuantity } from '@/services/updateCartQuantity';
-import { updateCartDelivery } from '@/services/updateCartDelivery';
-import { deleteCartItem } from '@/services/deleteCartItem';
-import { createOrder } from '@/services/createOrder';
+import type { Dispatch, SetStateAction } from "react";
+import type { CartItem } from "@/types";
+import { useNavigate } from "react-router";
+import { addToCart } from "@/services/addToCart";
+import { updateCartQuantity } from "@/services/updateCartQuantity";
+import { updateCartDelivery } from "@/services/updateCartDelivery";
+import { deleteCartItem } from "@/services/deleteCartItem";
+import { createOrder } from "@/services/createOrder";
 
 export function useCartActions(
 	_setCart: Dispatch<SetStateAction<CartItem[]>>,
-	loadCart: () => Promise<void>
+	loadCart: () => Promise<void>,
 ) {
-	
 	const navigate = useNavigate();
 
-	const addCart = async (productId: string, quantity: number): Promise<void> => {
+	const addCart = async (
+		productId: string,
+		quantity: number,
+	): Promise<void> => {
 		try {
 			await addToCart(productId, quantity);
 			await loadCart();
 		} catch {
-			console.error('Failed to add item to cart');
+			console.error("Failed to add item to cart");
 		}
 	};
 
-	const updateDeliveryOption = async (productId: string, deliveryOptionId: string): Promise<void> => {
+	const updateDeliveryOption = async (
+		productId: string,
+		deliveryOptionId: string,
+	): Promise<void> => {
 		try {
 			await updateCartDelivery(productId, deliveryOptionId);
 			await loadCart();
 		} catch {
-			console.error('Failed to update delivery option');
+			console.error("Failed to update delivery option");
 		}
 	};
 
-	const updateQuantity = async (productId: string, quantity: number): Promise<void> => {
+	const updateQuantity = async (
+		productId: string,
+		quantity: number,
+	): Promise<void> => {
 		try {
 			await updateCartQuantity(productId, quantity);
 			await loadCart();
 		} catch {
-			console.error('Failed to update quantity');
+			console.error("Failed to update quantity");
 		}
 	};
 
@@ -46,7 +54,7 @@ export function useCartActions(
 			await deleteCartItem({ cartItem: { productId } });
 			await loadCart();
 		} catch {
-			console.error('Failed to remove item');
+			console.error("Failed to remove item");
 		}
 	};
 
@@ -54,11 +62,17 @@ export function useCartActions(
 		try {
 			await createOrder();
 			await loadCart();
-			navigate('/orders');
+			navigate("/orders");
 		} catch {
-			console.error('Failed to place order');
+			console.error("Failed to place order");
 		}
 	};
 
-	return { addCart, updateDeliveryOption, updateQuantity, removeItem, placeOrder };
+	return {
+		addCart,
+		updateDeliveryOption,
+		updateQuantity,
+		removeItem,
+		placeOrder,
+	};
 }

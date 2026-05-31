@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 interface Props {
 	name: string;
@@ -11,7 +11,7 @@ export function ProductInfo({ name, deliveryTimeMs, quantity }: Props) {
 		<>
 			<div className="product-name">{name}</div>
 			<div className="product-delivery-date">
-				Arriving on: {dayjs(deliveryTimeMs).format('MMMM D')}
+				Arriving on: {dayjs(deliveryTimeMs).format("MMMM D")}
 			</div>
 			<div className="product-quantity">Quantity: {quantity}</div>
 		</>

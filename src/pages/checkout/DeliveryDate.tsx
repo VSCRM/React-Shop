@@ -1,5 +1,5 @@
-import dayjs from 'dayjs';
-import type { DeliveryOption } from '@/types';
+import dayjs from "dayjs";
+import type { DeliveryOption } from "@/types";
 
 interface Props {
 	selectedDeliveryOption: DeliveryOption;
@@ -8,7 +8,10 @@ interface Props {
 export function DeliveryDate({ selectedDeliveryOption }: Props) {
 	return (
 		<div className="delivery-date">
-			Delivery date: {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
+			Delivery date:{" "}
+			{dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format(
+				"dddd, MMMM D",
+			)}
 		</div>
 	);
 }

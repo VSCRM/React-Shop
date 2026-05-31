@@ -1,8 +1,8 @@
-import type { OrderProduct } from '@/types';
-import { TrackingDeliveryHeader } from './TrackingDeliveryHeader';
-import { TrackingProductInfo } from './TrackingProductInfo';
-import { TrackingProgress } from './TrackingProgress';
-import { computeStatus } from '@/utils/computeStatus';
+import type { OrderProduct } from "@/types";
+import { TrackingDeliveryHeader } from "./TrackingDeliveryHeader";
+import { TrackingProductInfo } from "./TrackingProductInfo";
+import { TrackingProgress } from "./TrackingProgress";
+import { computeStatus } from "@/utils/computeStatus";
 
 interface Props {
 	orderProduct: OrderProduct;
@@ -15,7 +15,10 @@ export function TrackingItem({ orderProduct, orderTimeMs }: Props) {
 
 	return (
 		<div className="order-tracking">
-			<TrackingDeliveryHeader estimatedDeliveryTimeMs={estimatedDeliveryTimeMs} status={status} />
+			<TrackingDeliveryHeader
+				estimatedDeliveryTimeMs={estimatedDeliveryTimeMs}
+				status={status}
+			/>
 			<TrackingProductInfo product={product} quantity={quantity} />
 			<TrackingProgress status={status} />
 		</div>

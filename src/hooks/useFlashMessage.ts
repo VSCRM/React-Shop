@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from "react";
 
 export function useFlashMessage(duration = 2000): [boolean, () => void] {
 	const [active, setActive] = useState(false);

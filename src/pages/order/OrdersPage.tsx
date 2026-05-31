@@ -1,8 +1,8 @@
-import { Header } from '@/layout/Header';
-import { OrderContainer } from './OrderContainer';
-import { useOrders } from '@/hooks/useOrders';
-import { useCartContext } from '@/hooks/useCartContext';
-import './OrdersPage.css';
+import { Header } from "@/layout/Header";
+import { OrderContainer } from "./OrderContainer";
+import { useOrders } from "@/hooks/useOrders";
+import { useCartContext } from "@/hooks/useCartContext";
+import "./OrdersPage.css";
 
 export function OrdersPage() {
 	const { addCart } = useCartContext();

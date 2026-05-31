@@ -1,13 +1,16 @@
-import { useParams, Link } from 'react-router';
-import { getTrackedProducts } from '@/utils/getTrackedProducts';
-import { Header } from '@/layout/Header';
-import { TrackingItem } from './TrackingItem';
-import { TrackingStatusMessage } from './TrackingStatusMessage';
-import { useOrder } from '@/hooks/useOrder';
-import './TrackingPage.css';
+import { useParams, Link } from "react-router";
+import { getTrackedProducts } from "@/utils/getTrackedProducts";
+import { Header } from "@/layout/Header";
+import { TrackingItem } from "./TrackingItem";
+import { TrackingStatusMessage } from "./TrackingStatusMessage";
+import { useOrder } from "@/hooks/useOrder";
+import "./TrackingPage.css";
 
 export function TrackingPage() {
-	const { orderId, productId } = useParams<{ orderId: string; productId?: string }>();
+	const { orderId, productId } = useParams<{
+		orderId: string;
+		productId?: string;
+	}>();
 	const { order, loading, error } = useOrder(orderId);
 
 	const trackedProducts = getTrackedProducts(order, productId);
@@ -22,7 +25,11 @@ export function TrackingPage() {
 					← View all orders
 				</Link>
 
-				<TrackingStatusMessage loading={loading} error={error} isEmpty={isEmpty} />
+				<TrackingStatusMessage
+					loading={loading}
+					error={error}
+					isEmpty={isEmpty}
+				/>
 
 				{trackedProducts.map((orderProduct) => (
 					<TrackingItem

@@ -14,10 +14,14 @@ export function QuantityEditor({ currentQuantity, onSave, onCancel }: Props) {
 				onChange={(event) => onSave(Number(event.target.value))}
 			>
 				{Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-					<option key={n} value={n}>{n}</option>
+					<option key={n} value={n}>
+						{n}
+					</option>
 				))}
 			</select>
-			<span className="link-primary" onClick={onCancel}>Cancel</span>
+			<span className="link-primary" onClick={onCancel}>
+				Cancel
+			</span>
 		</span>
 	);
 }

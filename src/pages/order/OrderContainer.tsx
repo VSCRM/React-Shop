@@ -1,6 +1,6 @@
-import type { Order } from '@/types';
-import { OrderHeader } from './OrderHeader';
-import { OrderDetail } from './OrderDetail';
+import type { Order } from "@/types";
+import { OrderHeader } from "./OrderHeader";
+import { OrderDetail } from "./OrderDetail";
 
 interface Props {
 	singleOrder: Order;

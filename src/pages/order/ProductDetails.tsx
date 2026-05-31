@@ -1,9 +1,9 @@
-import type { OrderProduct } from '@/types';
-import { staticImage } from '@/utils/imageUrl';
-import { ProductInfo } from './ProductInfo';
-import { BuyAgainPicker } from './BuyAgainPicker';
-import { useFlashMessage } from '@/hooks/useFlashMessage';
-import { useBuyAgain } from '@/hooks/useBuyAgain';
+import type { OrderProduct } from "@/types";
+import { staticImage } from "@/utils/imageUrl";
+import { ProductInfo } from "./ProductInfo";
+import { BuyAgainPicker } from "./BuyAgainPicker";
+import { useFlashMessage } from "@/hooks/useFlashMessage";
+import { useBuyAgain } from "@/hooks/useBuyAgain";
 
 interface Props {
 	orderProduct: OrderProduct;
@@ -12,8 +12,14 @@ interface Props {
 
 export function ProductDetails({ orderProduct, addCart }: Props) {
 	const [added, flashAdded] = useFlashMessage(2000);
-	const { showPicker, selectedQuantity, setSelectedQuantity, handleAddToCart, handleConfirm, handleCancel } =
-		useBuyAgain(orderProduct, addCart, flashAdded);
+	const {
+		showPicker,
+		selectedQuantity,
+		setSelectedQuantity,
+		handleAddToCart,
+		handleConfirm,
+		handleCancel,
+	} = useBuyAgain(orderProduct, addCart, flashAdded);
 
 	return (
 		<div className="product-details">
@@ -24,9 +30,18 @@ export function ProductDetails({ orderProduct, addCart }: Props) {
 			/>
 
 			{!showPicker ? (
-				<button className="buy-again-button button-primary" onClick={handleAddToCart}>
-					<img className="buy-again-icon" src={staticImage('images/icons/buy-again.png')} alt="buy" />
-					<span className="buy-again-message">{added ? 'Added!' : 'Add to Cart'}</span>
+				<button
+					className="buy-again-button button-primary"
+					onClick={handleAddToCart}
+				>
+					<img
+						className="buy-again-icon"
+						src={staticImage("images/icons/buy-again.png")}
+						alt="buy"
+					/>
+					<span className="buy-again-message">
+						{added ? "Added!" : "Add to Cart"}
+					</span>
 				</button>
 			) : (
 				<BuyAgainPicker

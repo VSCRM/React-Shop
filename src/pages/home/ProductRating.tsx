@@ -1,5 +1,5 @@
-import type { Rating } from '@/types';
-import { staticImage } from '@/utils/imageUrl';
+import type { Rating } from "@/types";
+import { staticImage } from "@/utils/imageUrl";
 
 interface Props {
 	rating: Rating;
@@ -13,9 +13,7 @@ export function ProductRating({ rating }: Props) {
 				src={staticImage(`images/ratings/rating-${rating.stars * 10}.png`)}
 				alt="rating stars"
 			/>
-			<div className="product-rating-count link-primary">
-				{rating.count}
-			</div>
+			<div className="product-rating-count link-primary">{rating.count}</div>
 		</div>
 	);
 }

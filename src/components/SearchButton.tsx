@@ -1,4 +1,4 @@
-import { staticImage } from '@/utils/imageUrl';
+import { staticImage } from "@/utils/imageUrl";
 
 interface Props {
 	hasText: boolean;
@@ -16,7 +16,11 @@ export function SearchButton({ hasText, onClear }: Props) {
 
 	return (
 		<button type="submit" className="search-button">
-			<img className="search-icon" src={staticImage('images/icons/search-icon.png')} alt="search" />
+			<img
+				className="search-icon"
+				src={staticImage("images/icons/search-icon.png")}
+				alt="search"
+			/>
 		</button>
 	);
 }

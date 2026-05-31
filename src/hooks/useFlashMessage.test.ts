@@ -1,24 +1,24 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
-import { useFlashMessage } from './useFlashMessage';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { renderHook, act } from "@testing-library/react";
+import { useFlashMessage } from "./useFlashMessage";
 
 beforeEach(() => vi.useFakeTimers());
 afterEach(() => vi.useRealTimers());
 
-describe('useFlashMessage', () => {
-	it('starts as inactive', () => {
+describe("useFlashMessage", () => {
+	it("starts as inactive", () => {
 		const { result } = renderHook(() => useFlashMessage());
 		const [active] = result.current;
 		expect(active).toBe(false);
 	});
 
-	it('becomes active immediately after trigger() is called', () => {
+	it("becomes active immediately after trigger() is called", () => {
 		const { result } = renderHook(() => useFlashMessage(2000));
 		act(() => result.current[1]());
 		expect(result.current[0]).toBe(true);
 	});
 
-	it('deactivates after the duration has elapsed', () => {
+	it("deactivates after the duration has elapsed", () => {
 		const { result } = renderHook(() => useFlashMessage(2000));
 
 		act(() => result.current[1]());
@@ -27,7 +27,7 @@ describe('useFlashMessage', () => {
 		expect(result.current[0]).toBe(false);
 	});
 
-	it('stays active before the duration elapses', () => {
+	it("stays active before the duration elapses", () => {
 		const { result } = renderHook(() => useFlashMessage(2000));
 
 		act(() => result.current[1]());
@@ -36,7 +36,7 @@ describe('useFlashMessage', () => {
 		expect(result.current[0]).toBe(true);
 	});
 
-	it('resets the timer when trigger() is called again while already active', () => {
+	it("resets the timer when trigger() is called again while already active", () => {
 		const { result } = renderHook(() => useFlashMessage(2000));
 
 		act(() => result.current[1]());
@@ -50,7 +50,7 @@ describe('useFlashMessage', () => {
 		expect(result.current[0]).toBe(true);
 	});
 
-	it('uses 2000ms as default duration', () => {
+	it("uses 2000ms as default duration", () => {
 		const { result } = renderHook(() => useFlashMessage());
 
 		act(() => result.current[1]());

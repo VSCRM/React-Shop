@@ -1,4 +1,4 @@
-import { Component, type ReactNode, type ErrorInfo } from 'react';
+import { Component, type ReactNode, type ErrorInfo } from "react";
 
 interface Props {
 	children: ReactNode;
@@ -21,7 +21,7 @@ export class ErrorBoundary extends Component<Props, State> {
 	}
 
 	componentDidCatch(error: Error, info: ErrorInfo): void {
-		console.error('[ErrorBoundary]', error, info.componentStack);
+		console.error("[ErrorBoundary]", error, info.componentStack);
 	}
 
 	render(): ReactNode {
@@ -31,10 +31,12 @@ export class ErrorBoundary extends Component<Props, State> {
 			}
 
 			return (
-				<div style={{ padding: '2rem', textAlign: 'center' }}>
+				<div style={{ padding: "2rem", textAlign: "center" }}>
 					<h2>Something went wrong.</h2>
 					<p>{this.state.error?.message}</p>
-					<button onClick={() => this.setState({ hasError: false, error: null })}>
+					<button
+						onClick={() => this.setState({ hasError: false, error: null })}
+					>
 						Try again
 					</button>
 				</div>

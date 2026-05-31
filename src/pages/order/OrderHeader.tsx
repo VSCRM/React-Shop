@@ -1,6 +1,6 @@
-import dayjs from 'dayjs';
-import type { Order } from '@/types';
-import { formatMoney } from '@/utils/money';
+import dayjs from "dayjs";
+import type { Order } from "@/types";
+import { formatMoney } from "@/utils/money";
 
 interface Props {
 	singleOrder: Order;
@@ -12,7 +12,7 @@ export function OrderHeader({ singleOrder }: Props) {
 			<div className="order-header-left-section">
 				<div className="order-date">
 					<div className="order-header-label">Order Placed:</div>
-					<div>{dayjs(singleOrder.orderTimeMs).format('MMMM D')}</div>
+					<div>{dayjs(singleOrder.orderTimeMs).format("MMMM D")}</div>
 				</div>
 				<div className="order-total">
 					<div className="order-header-label">Total:</div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export function useDebounce<T>(rawValue: T, delayMs = 350): T {
 	const [stableValue, setStableValue] = useState<T>(rawValue);

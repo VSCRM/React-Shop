@@ -1,15 +1,15 @@
-import type { OrderProduct } from '@/types';
+import type { OrderProduct } from "@/types";
 
 interface OrderLike {
-  products?: OrderProduct[];
+	products?: OrderProduct[];
 }
 
 export const getTrackedProducts = (
-  order: OrderLike | null | undefined,
-  productId?: string
+	order: OrderLike | null | undefined,
+	productId?: string,
 ): OrderProduct[] => {
-  if (!order || !order.products) return [];
-  return productId
-    ? order.products.filter((p) => p.productId === productId)
-    : order.products;
+	if (!order || !order.products) return [];
+	return productId
+		? order.products.filter((p) => p.productId === productId)
+		: order.products;
 };

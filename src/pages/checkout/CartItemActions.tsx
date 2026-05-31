@@ -1,8 +1,8 @@
-import type { CartItem } from '@/types';
-import type { useCartItemHandlers } from '@/hooks/useCartItemHandlers';
-import { QuantityEditor } from './QuantityEditor';
-import { DeleteConfirm } from './DeleteConfirm';
-import { QuantityDisplay } from './QuantityDisplay';
+import type { CartItem } from "@/types";
+import type { useCartItemHandlers } from "@/hooks/useCartItemHandlers";
+import { QuantityEditor } from "./QuantityEditor";
+import { DeleteConfirm } from "./DeleteConfirm";
+import { QuantityDisplay } from "./QuantityDisplay";
 
 type Handlers = ReturnType<typeof useCartItemHandlers>;
 
@@ -13,9 +13,13 @@ interface Props {
 
 export function CartItemActions({ cartItem, handlers }: Props) {
 	const {
-		isEditing, setIsEditing,
-		isConfirmingDelete, setIsConfirmingDelete,
-		handleSaveQuantity, handleDeleteOne, handleDeleteAll,
+		isEditing,
+		setIsEditing,
+		isConfirmingDelete,
+		setIsConfirmingDelete,
+		handleSaveQuantity,
+		handleDeleteOne,
+		handleDeleteAll,
 	} = handlers;
 
 	if (isEditing) {
