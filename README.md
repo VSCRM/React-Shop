@@ -239,8 +239,8 @@ npm run deploy
 
 | Branch | Description |
 |---|---|
-| [`main`](https://github.com/VSCRM/React-Shop/tree/main) | JavaScript version — deployed |
-| [`typescript-version`](https://github.com/VSCRM/React-Shop/tree/typescript-version) | TypeScript version — source only |
+| [`main`](https://github.com/VSCRM/React-Shop/tree/main) | TypeScript version — deployed |
+| [`main-old`](https://github.com/VSCRM/React-Shop/tree/main=old) | JavaScript version |
 
 ---
 
